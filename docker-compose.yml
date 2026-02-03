@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  forgecomply-360:
+    build: .
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY:-dev-key-change-in-production-00000000000000}
+      - DEFAULT_POLL_INTERVAL=15
+    volumes:
+      - forgecomply-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  forgecomply-data:
