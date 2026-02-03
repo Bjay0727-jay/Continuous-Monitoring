@@ -1,11 +1,11 @@
 import { createApp } from './app';
 import { config } from './config/env';
-import { getDatabase, closeDatabase } from './db/connection';
+import { initDatabase, closeDatabase } from './db/connection';
 import { startScheduler, stopScheduler } from './scheduler/cron';
 import { logger } from './utils/logger';
 
 async function main(): Promise<void> {
-  getDatabase();
+  await initDatabase();
 
   const app = createApp();
 
